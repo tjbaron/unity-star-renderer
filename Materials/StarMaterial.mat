@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - CameraRight: {r: -0.58931243, g: 0.057855636, b: -0.8058313, a: 0}
-    - CameraUp: {r: -0.8066685, g: 0.013038203, b: 0.5908606, a: 0}
+    - CameraRight: {r: 0.100399554, g: 0.027402818, b: -0.9945699, a: 0}
+    - CameraUp: {r: -0.98059505, g: -0.16645086, b: -0.10357508, a: 0}
     - _Color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

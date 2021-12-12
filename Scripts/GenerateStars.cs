@@ -66,7 +66,7 @@ public class GenerateStars : MonoBehaviour
 
             // Create a quad for each star
             var cols = rows[i+1].Split(',');
-            var x = float.Parse( cols[(int)StarData.x] );
+            var x = -float.Parse( cols[(int)StarData.x] );
             var y = float.Parse( cols[(int)StarData.y] );
             var z = float.Parse( cols[(int)StarData.z] );
             var mag = float.Parse( cols[(int)StarData.mag] );
@@ -88,7 +88,8 @@ public class GenerateStars : MonoBehaviour
             normals[j*4 + 2] = -Vector3.forward;
             normals[j*4 + 3] = -Vector3.forward;
 
-            var size = Mathf.Max(0, (10f - mag) / 20f);
+            // Stars up to magnitude 6.5 are visible with naked eye... but let's push it to 7.5
+            var size = Mathf.Max(0, (7.5f - mag) / 13f);
 
             var highlighted = 0f;
             for (var m=0; m<highlightedStars.Length; m++) {
