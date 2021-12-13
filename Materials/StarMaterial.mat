@@ -40,9 +40,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - StarSize: 1
     m_Colors:
-    - CameraRight: {r: 0.100399554, g: 0.027402818, b: -0.9945699, a: 0}
-    - CameraUp: {r: -0.98059505, g: -0.16645086, b: -0.10357508, a: 0}
+    - CameraRight: {r: -0.8627335, g: -0.33501035, b: 0.37876022, a: 0}
+    - CameraUp: {r: 0.41519147, g: -0.041765075, b: 0.908775, a: 0}
     - _Color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
