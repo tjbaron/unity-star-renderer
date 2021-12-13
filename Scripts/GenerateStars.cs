@@ -69,7 +69,7 @@ public class GenerateStars : MonoBehaviour
             var x = -float.Parse( cols[(int)StarData.x] );
             var y = float.Parse( cols[(int)StarData.y] );
             var z = float.Parse( cols[(int)StarData.z] );
-            var mag = float.Parse( cols[(int)StarData.mag] );
+            var absmag = float.Parse( cols[(int)StarData.absmag] );
 
             vertices[j*4] = new Vector3(x, y, z);
             vertices[j*4 + 1] = new Vector3(x, y, z);
@@ -88,9 +88,6 @@ public class GenerateStars : MonoBehaviour
             normals[j*4 + 2] = -Vector3.forward;
             normals[j*4 + 3] = -Vector3.forward;
 
-            // Stars up to magnitude 6.5 are visible with naked eye... but let's push it to 7.5
-            var size = Mathf.Max(0, (7.5f - mag) / 13f);
-
             var highlighted = 0f;
             for (var m=0; m<highlightedStars.Length; m++) {
                 if (cols[(int)StarData.proper] == highlightedStars[m]) {
@@ -104,7 +101,7 @@ public class GenerateStars : MonoBehaviour
             uv[j*4 + 1] = new Vector2(1f, 0f);
             uv[j*4 + 2] = new Vector2(0f, 1f);
             uv[j*4 + 3] = new Vector2(1f, 1f);
-            uv2[j*4] = uv2[j*4 + 1] = uv2[j*4 + 2] = uv2[j*4 + 3] = new Vector2(size, highlighted);
+            uv2[j*4] = uv2[j*4 + 1] = uv2[j*4 + 2] = uv2[j*4 + 3] = new Vector2(absmag, highlighted);
         }
         mesh.vertices = vertices;
         mesh.triangles = tris;
@@ -117,5 +114,49 @@ public class GenerateStars : MonoBehaviour
     void Update() {
         starMaterial.SetVector("CameraUp", Camera.main.transform.up);
         starMaterial.SetVector("CameraRight", Camera.main.transform.right);
+        if (Input.GetMouseButtonDown(0))
+        {
+            var starData = starDataAsset.text;
+            var closestStarDistance = 99999999999999f;
+            var rows = starData.Split('\n');
+            for (var i=1; i < rows.Length - 1; i++)
+            {
+                var row = rows[i];
+                var cols = row.Split(',');
+                var x = -float.Parse(cols[(int)StarData.x]);
+                var y = float.Parse(cols[(int)StarData.y]);
+                var z = float.Parse(cols[(int)StarData.z]);
+                var mag = float.Parse(cols[(int)StarData.mag]);
+                var dist = float.Parse(cols[(int)StarData.dist]);
+                var starName = cols[(int)StarData.proper];
+
+                if (mag < 4 && starName != "" && starName != "Sol")
+                {
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    Vector3 starPosition = new Vector3(x, y, z); //Camera.main.transform.position;
+
+                    float distance = Vector3.Cross(ray.direction, starPosition - ray.origin).magnitude;
+                    float angularDistance = distance / Mathf.Max(dist, 0.0001f); // relative distance... no particular units
+
+                    if (angularDistance < closestStarDistance)
+                    {
+                        closestStarName = starName;
+                        closestStarPosition = starPosition;
+                        closestStarDistance = angularDistance;
+                    }
+                }
+            }
+
+        
+        }
+    }
+
+    private string closestStarName = "";
+    private Vector3 closestStarPosition = Vector3.zero;
+    private void OnGUI()
+    {
+        GUILayout.Label(closestStarName);
+        var screenPosition = Camera.main.WorldToScreenPoint(closestStarPosition);
+        GUI.Label(new Rect(screenPosition.x-7, Screen.height-screenPosition.y-7, 20, 20), "O");
     }
 }
