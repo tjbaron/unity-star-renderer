@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 1687258582}
   - component: {fileID: 1687258586}
   - component: {fileID: 1687258583}
+  - component: {fileID: 1687258587}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -163,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c349e5160335e40f2bf7564867e0252e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 0.30660176
 --- !u!20 &1687258584
 Camera:
   m_ObjectHideFlags: 0
@@ -253,6 +254,25 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1687258587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687258581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd39b5d008e6644cb9bae71298d49328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starDataAsset: {fileID: 4900000, guid: 4ad4f3822367a46d39b6c8d6df2c6c52, type: 3}
+  starsOfInterest:
+  - Alnitak
+  - Alnilam
+  - Mintaka
+  - Sol
+  autoPilot: 0
 --- !u!1 &2100029085
 GameObject:
   m_ObjectHideFlags: 0

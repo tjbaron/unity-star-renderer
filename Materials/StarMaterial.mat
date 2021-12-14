@@ -43,7 +43,7 @@ Material:
     m_Floats:
     - StarSize: 1
     m_Colors:
-    - CameraRight: {r: -0.8627335, g: -0.33501035, b: 0.37876022, a: 0}
-    - CameraUp: {r: 0.41519147, g: -0.041765075, b: 0.908775, a: 0}
+    - CameraRight: {r: -0.95109576, g: -0.30411556, b: -0.054134317, a: 0}
+    - CameraUp: {r: -0.08543787, g: 0.090579316, b: 0.9922176, a: 0}
     - _Color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
