@@ -8,3 +8,5 @@ In this animation you can see Orion and Pleiades as we fly along at 1 lightyear 
 ![Orion](./Docs/Orion.webp)
 
 It is also simple to keep the sky rendered from a fixed vantage point. Whether that is from Earth/Sol or... Betelgeuse?
+
+[WebGL demo available on simmer.io](https://simmer.io/@tjbaron/star-renderer)
