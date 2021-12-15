@@ -18,6 +18,7 @@ public class GenerateStars : MonoBehaviour
     // https://github.com/astronexus/HYG-Database
     public TextAsset starDataAsset;
     public Material starMaterial;
+    public bool fixedStars = false;
 
     //public string[] highlightedStars = new string[]{"Alnitak", "Alnilam", "Mintaka"};
 
@@ -117,6 +118,13 @@ public class GenerateStars : MonoBehaviour
     }
 
     void Update() {
+        if (fixedStars)
+        {
+            starMaterial.SetFloat("FixedStars", 1f);
+        } else
+        {
+            starMaterial.SetFloat("FixedStars", 0f);
+        }
         starMaterial.SetVector("CameraUp", Camera.main.transform.up);
         starMaterial.SetVector("CameraRight", Camera.main.transform.right);
     }
