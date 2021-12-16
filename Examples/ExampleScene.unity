@@ -306,10 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starDataAsset: {fileID: 4900000, guid: 4ad4f3822367a46d39b6c8d6df2c6c52, type: 3}
   starMaterial: {fileID: 2100000, guid: 1c1255191b8cc47539f08de8b4b09e27, type: 2}
-  highlightedStars:
-  - Alnitak
-  - Alnilam
-  - Mintaka
+  viewerToCameraPosition: 1
 --- !u!4 &2100029087
 Transform:
   m_ObjectHideFlags: 0
