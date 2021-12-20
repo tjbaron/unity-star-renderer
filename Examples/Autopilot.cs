@@ -77,7 +77,10 @@ public class Autopilot : MonoBehaviour
         if (!autoPilot)
         {
             var screenPosition = Camera.main.WorldToScreenPoint(closestStarPosition);
-            GUI.Label(new Rect(screenPosition.x - 7, Screen.height - screenPosition.y - 7, 20, 20), "O");
+            if (screenPosition.z > 0)
+            {
+                GUI.Label(new Rect(screenPosition.x - 7, Screen.height - screenPosition.y - 7, 20, 20), "O");
+            }
         }
     }
 }
