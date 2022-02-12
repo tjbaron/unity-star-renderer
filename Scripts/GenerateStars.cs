@@ -18,13 +18,15 @@ public class GenerateStars : MonoBehaviour
     // https://github.com/astronexus/HYG-Database
     public TextAsset starDataAsset;
     public Material starMaterial;
+    // Viewer position in parsecs relative to earth
+    public Vector3 viewerPosition;
     public bool viewerToCameraPosition = true;
 
     //public string[] highlightedStars = new string[]{"Alnitak", "Alnilam", "Mintaka"};
 
     void Start()
     {
-        // Get all the stars from hyg database
+        // Get all the stars from hyg vdatabase
         var starData = starDataAsset.text;
         var rows = starData.Split('\n');
         var starCount = rows.Length-2;
@@ -120,8 +122,9 @@ public class GenerateStars : MonoBehaviour
     void Update() {
         if (viewerToCameraPosition)
         {
-            starMaterial.SetVector("ViewerPosition", Camera.main.transform.position);
+            viewerPosition = Camera.main.transform.position;
         }
+        starMaterial.SetVector("ViewerPosition", viewerPosition);
         starMaterial.SetVector("CameraUp", Camera.main.transform.up);
         starMaterial.SetVector("CameraRight", Camera.main.transform.right);
     }
