@@ -17,6 +17,8 @@ public class Autopilot : MonoBehaviour
     private Quaternion targetRotation = Quaternion.identity;
     private float rotationTime = 5f;
 
+    private string azalt = "";
+
     public GenerateStars generateStarsScript;
 
     void Update()
@@ -96,6 +98,9 @@ public class Autopilot : MonoBehaviour
                 startRotation = transform.rotation;
                 targetRotation = Quaternion.LookRotation(starPosition);
                 rotationTime = 0;
+
+                var azAltVec = generateStarsScript.GetAzAlt(new Vector3(x, y, z));
+                azalt = azAltVec.x.ToString("0.0") + " / " + azAltVec.y.ToString("0.0");
             }
         }
     }
@@ -162,5 +167,7 @@ public class Autopilot : MonoBehaviour
                 GUILayout.Label("Search stars using their HIP number or proper name");
             } 
         }
+
+        GUILayout.Label("Az / Alt: " + azalt);
     }
 }

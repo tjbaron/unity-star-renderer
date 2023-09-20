@@ -54,6 +54,14 @@ public class GenerateStars : MonoBehaviour
         return rot;
     }
 
+    public Vector2 GetAzAlt(Vector3 starPosition) {
+        var starPositionLocal = GetSkyQuaternion() * starPosition;
+        var az  = Vector3.SignedAngle(new Vector3(starPositionLocal.x, 0f, starPositionLocal.z), Vector3.forward, -Vector3.up);
+        var alt = 90f - Vector3.Angle(starPositionLocal, Vector3.up);
+        if (az < 0) az += 360f;
+        return new Vector2(az, alt);
+    }
+
     //public string[] highlightedStars = new string[]{"Alnitak", "Alnilam", "Mintaka"};
 
     void Start()
