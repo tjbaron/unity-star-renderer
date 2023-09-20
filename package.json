@@ -1,0 +1,21 @@
+{
+    "name": "com.baroncreations.star-renderer",
+    "version": "0.2.0",
+    "displayName": "Star Renderer",
+    "description": "Render realistic 3D star field based on real star data",
+    "unity": "2019.3",
+    "documentationUrl": "https://github.com/tjbaron/unity-star-renderer",
+    "changelogUrl": "https://github.com/tjbaron/unity-star-renderer",
+    "licensesUrl": "https://github.com/tjbaron/unity-star-renderer/LICENSE",
+    "dependencies": {},
+   "keywords": [
+      "shader",
+      "star",
+      "sky"
+    ],
+    "author": {
+      "name": "Thomas Baron",
+      "email": "contact@baroncreations.com",
+      "url": "https://baroncreations.com"
+    }
+}
