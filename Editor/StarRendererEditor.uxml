@@ -10,4 +10,5 @@
     </ui:IMGUIContainer>
     <ui:IntegerField label="Day Of Year" value="42" name="dayOfYear" binding-path="dayOfYear" />
     <ui:FloatField label="GMT Time" value="42.2" name="gmtTime" binding-path="gmtTime" />
+    <ui:Button text="Now" parse-escape-sequences="true" display-tooltip-when-elided="true" name="nowButton" />
 </ui:UXML>

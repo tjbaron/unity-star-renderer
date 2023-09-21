@@ -31,6 +31,15 @@ public class StarRendererEditor : Editor
             }
         };
 
+        var nowButton = uiDoc.Q<Button>("nowButton");
+        var dayOfYear = uiDoc.Q<IntegerField>("dayOfYear");
+        var gmtTime = uiDoc.Q<FloatField>("gmtTime");
+        nowButton.clicked += () => {
+            var now = DateTime.UtcNow;
+            dayOfYear.value = now.DayOfYear;
+            gmtTime.value = now.Hour + now.Minute / 60f;
+        };
+
         return uiDoc;
     }
 
