@@ -119,14 +119,14 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - CameraRight: {r: -0.00000011920929, g: 0, b: -1.0000001, a: 0}
-    - CameraUp: {r: 0, g: 1, b: 0, a: 0}
+    - CameraRight: {r: -0.9998709, g: -9.313226e-10, b: -0.016067842, a: 0}
+    - CameraUp: {r: -0.012513935, g: 0.62724924, b: 0.77871805, a: 0}
     - ViewerPosition: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _StarRotation: {r: 7.917686, g: 0.9482374, b: 0, a: 0}
+    - _StarRotation: {r: 0.20071286, g: -0.68591446, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4741502515844618919
 MonoBehaviour:

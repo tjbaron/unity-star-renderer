@@ -19,7 +19,7 @@ public class Autopilot : MonoBehaviour
 
     private string azalt = "";
 
-    public GenerateStars generateStarsScript;
+    public StarRenderer starRendererScript;
 
     void Update()
     {
@@ -35,7 +35,7 @@ public class Autopilot : MonoBehaviour
         // Select a star by right clicking it
         if (Input.GetMouseButtonDown(1))
         {
-            var starData = generateStarsScript.starDataAsset.text;
+            var starData = starRendererScript.starDataAsset.text;
             var closestStarDistance = 99999999999999f;
             var rows = starData.Split('\n');
             for (var i = 1; i < rows.Length - 1; i++)
@@ -49,14 +49,14 @@ public class Autopilot : MonoBehaviour
                 var starName = cols[(int)StarData.proper];
                 var hip = cols[(int)StarData.hip];
 
-                Vector3 starPosition = generateStarsScript.GetSkyQuaternion() * new Vector3(x, y, z); //Camera.main.transform.position;
+                Vector3 starPosition = starRendererScript.GetSkyQuaternion() * new Vector3(x, y, z); //Camera.main.transform.position;
                 float starDistanceFromCamera = Vector3.Distance(starPosition, Camera.main.transform.position);
 
                 if (mag < 20 && starName != "" && starDistanceFromCamera > 1f)
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     
-                    float distance = Vector3.Cross(ray.direction, starPosition - generateStarsScript.viewerPosition).magnitude;
+                    float distance = Vector3.Cross(ray.direction, starPosition - starRendererScript.viewerPosition).magnitude;
                     float angularDistance = distance / Mathf.Max(starDistanceFromCamera, 0.1f); // relative distance... no particular units
 
                     if (angularDistance < closestStarDistance)
@@ -76,7 +76,7 @@ public class Autopilot : MonoBehaviour
     }
 
     private void SearchStar() {
-        var starData = generateStarsScript.starDataAsset.text;
+        var starData = starRendererScript.starDataAsset.text;
         var rows = starData.Split('\n');
         for (var i = 1; i < rows.Length - 1; i++)
         {
@@ -89,7 +89,7 @@ public class Autopilot : MonoBehaviour
             var starName = cols[(int)StarData.proper];
             var hip = cols[(int)StarData.hip];
 
-            Vector3 starPosition = generateStarsScript.GetSkyQuaternion() * new Vector3(x, y, z);
+            Vector3 starPosition = starRendererScript.GetSkyQuaternion() * new Vector3(x, y, z);
 
             if (starName == searchText || hip == searchText) {
                 closestStarName = starName + " (HIP " + hip + ")";
@@ -99,7 +99,7 @@ public class Autopilot : MonoBehaviour
                 targetRotation = Quaternion.LookRotation(starPosition);
                 rotationTime = 0;
 
-                var azAltVec = generateStarsScript.GetAzAlt(new Vector3(x, y, z));
+                var azAltVec = starRendererScript.GetAzAlt(new Vector3(x, y, z));
                 azalt = azAltVec.x.ToString("0.0") + " / " + azAltVec.y.ToString("0.0");
             }
         }
@@ -131,12 +131,12 @@ public class Autopilot : MonoBehaviour
         if (groundMode) {
             GUILayout.Label("September 20 15:00GMT");
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Latitude: " + generateStarsScript.longLat.y.ToString("0.000"));
-            generateStarsScript.longLat.y = GUILayout.HorizontalSlider(generateStarsScript.longLat.y, 90, -90, GUILayout.Width(200));
+            GUILayout.Label("Latitude: " + starRendererScript.longLat.y.ToString("0.000"));
+            starRendererScript.longLat.y = GUILayout.HorizontalSlider(starRendererScript.longLat.y, 90, -90, GUILayout.Width(200));
             GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Longitude: " + generateStarsScript.longLat.x.ToString("0.000"));
-            generateStarsScript.longLat.x = GUILayout.HorizontalSlider(generateStarsScript.longLat.x, -180f, 180f, GUILayout.Width(200));
+            GUILayout.Label("Longitude: " + starRendererScript.longLat.x.ToString("0.000"));
+            starRendererScript.longLat.x = GUILayout.HorizontalSlider(starRendererScript.longLat.x, -180f, 180f, GUILayout.Width(200));
             GUILayout.EndHorizontal();
         }
 
@@ -144,7 +144,7 @@ public class Autopilot : MonoBehaviour
         if (!autoPilot)
         {
             var saveCam = Camera.main.transform.position;
-            Camera.main.transform.position = generateStarsScript.viewerPosition;
+            Camera.main.transform.position = starRendererScript.viewerPosition;
             var screenPosition = Camera.main.WorldToScreenPoint(closestStarPosition);
             Camera.main.transform.position = saveCam;
 

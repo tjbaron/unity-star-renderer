@@ -12,7 +12,7 @@ public enum StarData {
 
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
-public class GenerateStars : MonoBehaviour
+public class StarRenderer : MonoBehaviour
 {
     // This expects the hygdata_v3.csv star data file
     // https://github.com/astronexus/HYG-Database
@@ -66,6 +66,17 @@ public class GenerateStars : MonoBehaviour
 
     void Start()
     {
+        if (!starDataAsset) {
+            Debug.LogError("No 'starDataAsset' set on 'GenerateStars' script");
+            transform.name = "[ERROR] " + transform.name;
+            return;
+        }
+        if (!starMaterial) {
+            Debug.LogError("No 'starMaterial' set on 'GenerateStars' script");
+            transform.name = "[ERROR] " + transform.name;
+            return;
+        }
+
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
         transform.localScale = Vector3.one;
@@ -164,6 +175,10 @@ public class GenerateStars : MonoBehaviour
     }
 
     void Update() {
+        if (!starMaterial) {
+            return;
+        }
+
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
         transform.localScale = Vector3.one;

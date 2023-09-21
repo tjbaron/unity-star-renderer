@@ -14,13 +14,13 @@ This package is only compatible with the Universal Render Pipeline (URP). Though
 ## Technical overview
 
 Star size is tricky. It isn't based on distance, but relative magnitude (brightness). And relative magnitude varies depending
-on you position in the starfield. With about 120,000 stars, and the goal of flying at any speed performance is key. Relative magnitude
+on your position in the star field. With about 120,000 stars, and the goal of flying at any speed performance is key. Relative magnitude
 is recalculated in the graphics shader for each star every frame. Then, based on this magnitude a star size is chosen. This sounds compute
 intensive - and it would be on a CPU. But in a shader it runs amazingly fast.
 
 Each star is rendered near the camera's far clip plane, so there's no worries of other scene objects rendering behind the stars.
 
-Because you can fly as fast as you want through the whole starfield all ~120,000 stars need to be loaded up at all times. Even the dimmest
+Because you can fly as fast as you want through the whole star field all ~120,000 stars need to be loaded up at all times. Even the dimmest
 star will be bright if you're close enough to it! You'll be rendering around 240,000 very simple polygons separate into about 24 meshes. But
 again, performance doesn't seem to be an issue - even if you're targeting a 500fps (something else in your game will likely be your bottleneck).
 
@@ -32,17 +32,22 @@ and easier for others to tweak.
 
 ## Usage for interstellar travel
 
-Since this is a 3D starfield you can fly from star to star seamlessly. Your position is specified by the
+Since this is a 3D star field you can fly from star to star seamlessly. Your position is specified by the
 "ViewerPosition" on the main "GenerateStars" Script. Position is relative to the sun (Sol) and is measured in Parsecs.
 
 ## Usage as a Skybox
 
 If you plan to use this as a Skybox from the perspective of Earth's surface it is possible to specify a Latitude, Longitude,
 Day of year (0-365) and time (0-24). The stars will rotate accordingly with +Z being north and +X being east. Based on simple
-testing star positions seem to be withing 1-2 degrees of true value.
+testing star positions seem to be within 1-2 degrees of true value.
 
 You'll also want to set "Viewer Position" to 0, 0, 0 (the position of our sun, Sol) and disable "Viewer to Camera Position" (so
 you don't fly 1 parsec for every unit you move the camera).
+
+In the editor it is possible to type a city name, press "Search City" and have the latitude / longitude filled automatically.
+Note however format must be exactly city name optionally followed by a 2 character country code. For example "Tokyo", "Tokyo, JP",
+"Sydney", "Sydney, AU" are all valid. After searching the country code will be added if missing (so you know whether you got the
+correct result).
 
 ## Demo
 

@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns="UnityEngine.UIElements" ue="UnityEditor.UIElements" editor-extension-mode="True">
+    <uie:ObjectField label="Star Data Asset" type="UnityEngine.TextAsset, UnityEngine.CoreModule" binding-path="starDataAsset" name="starDataAsset" />
+    <uie:ObjectField label="Star Material" type="UnityEngine.Material, UnityEngine.CoreModule" binding-path="starMaterial" name="starMaterial" />
+    <ui:Toggle label="Viewer To Camera Position" binding-path="viewerToCameraPosition" name="viewerToggle" />
+    <ui:Vector3Field label="Viewer Position" binding-path="viewerPosition" name="viewerPosition" />
+    <ui:Vector2Field label="Longitude / Latitude" name="longLat" binding-path="longLat" />
+    <ui:IMGUIContainer style="flex-direction: row;">
+        <ui:TextField picking-mode="Ignore" label="City Name" name="cityName" style="flex-grow: 1;" />
+        <ui:Button text="Search City" parse-escape-sequences="true" display-tooltip-when-elided="true" name="citySearch" />
+    </ui:IMGUIContainer>
+    <ui:IntegerField label="Day Of Year" value="42" name="dayOfYear" binding-path="dayOfYear" />
+    <ui:FloatField label="GMT Time" value="42.2" name="gmtTime" binding-path="gmtTime" />
+</ui:UXML>
